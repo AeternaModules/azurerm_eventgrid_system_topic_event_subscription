@@ -113,8 +113,8 @@ EOT
     name                                 = string
     resource_group_name                  = string
     system_topic                         = string
-    advanced_filtering_on_arrays_enabled = optional(bool, false)
-    event_delivery_schema                = optional(string, "EventGridSchema")
+    advanced_filtering_on_arrays_enabled = optional(bool)   # Default: false
+    event_delivery_schema                = optional(string) # Default: "EventGridSchema"
     eventhub_endpoint_id                 = optional(string)
     expiration_time_utc                  = optional(string)
     hybrid_connection_endpoint_id        = optional(string)
