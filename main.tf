@@ -18,131 +18,131 @@ resource "azurerm_eventgrid_system_topic_event_subscription" "eventgrid_system_t
     for_each = each.value.advanced_filter != null ? [each.value.advanced_filter] : []
     content {
       dynamic "bool_equals" {
-        for_each = advanced_filter.value.bool_equals != null ? [advanced_filter.value.bool_equals] : []
+        for_each = advanced_filter.value.bool_equals != null ? advanced_filter.value.bool_equals : []
         content {
           key   = bool_equals.value.key
           value = bool_equals.value.value
         }
       }
       dynamic "is_not_null" {
-        for_each = advanced_filter.value.is_not_null != null ? [advanced_filter.value.is_not_null] : []
+        for_each = advanced_filter.value.is_not_null != null ? advanced_filter.value.is_not_null : []
         content {
           key = is_not_null.value.key
         }
       }
       dynamic "is_null_or_undefined" {
-        for_each = advanced_filter.value.is_null_or_undefined != null ? [advanced_filter.value.is_null_or_undefined] : []
+        for_each = advanced_filter.value.is_null_or_undefined != null ? advanced_filter.value.is_null_or_undefined : []
         content {
           key = is_null_or_undefined.value.key
         }
       }
       dynamic "number_greater_than" {
-        for_each = advanced_filter.value.number_greater_than != null ? [advanced_filter.value.number_greater_than] : []
+        for_each = advanced_filter.value.number_greater_than != null ? advanced_filter.value.number_greater_than : []
         content {
           key   = number_greater_than.value.key
           value = number_greater_than.value.value
         }
       }
       dynamic "number_greater_than_or_equals" {
-        for_each = advanced_filter.value.number_greater_than_or_equals != null ? [advanced_filter.value.number_greater_than_or_equals] : []
+        for_each = advanced_filter.value.number_greater_than_or_equals != null ? advanced_filter.value.number_greater_than_or_equals : []
         content {
           key   = number_greater_than_or_equals.value.key
           value = number_greater_than_or_equals.value.value
         }
       }
       dynamic "number_in" {
-        for_each = advanced_filter.value.number_in != null ? [advanced_filter.value.number_in] : []
+        for_each = advanced_filter.value.number_in != null ? advanced_filter.value.number_in : []
         content {
           key    = number_in.value.key
           values = number_in.value.values
         }
       }
       dynamic "number_in_range" {
-        for_each = advanced_filter.value.number_in_range != null ? [advanced_filter.value.number_in_range] : []
+        for_each = advanced_filter.value.number_in_range != null ? advanced_filter.value.number_in_range : []
         content {
           key    = number_in_range.value.key
           values = number_in_range.value.values
         }
       }
       dynamic "number_less_than" {
-        for_each = advanced_filter.value.number_less_than != null ? [advanced_filter.value.number_less_than] : []
+        for_each = advanced_filter.value.number_less_than != null ? advanced_filter.value.number_less_than : []
         content {
           key   = number_less_than.value.key
           value = number_less_than.value.value
         }
       }
       dynamic "number_less_than_or_equals" {
-        for_each = advanced_filter.value.number_less_than_or_equals != null ? [advanced_filter.value.number_less_than_or_equals] : []
+        for_each = advanced_filter.value.number_less_than_or_equals != null ? advanced_filter.value.number_less_than_or_equals : []
         content {
           key   = number_less_than_or_equals.value.key
           value = number_less_than_or_equals.value.value
         }
       }
       dynamic "number_not_in" {
-        for_each = advanced_filter.value.number_not_in != null ? [advanced_filter.value.number_not_in] : []
+        for_each = advanced_filter.value.number_not_in != null ? advanced_filter.value.number_not_in : []
         content {
           key    = number_not_in.value.key
           values = number_not_in.value.values
         }
       }
       dynamic "number_not_in_range" {
-        for_each = advanced_filter.value.number_not_in_range != null ? [advanced_filter.value.number_not_in_range] : []
+        for_each = advanced_filter.value.number_not_in_range != null ? advanced_filter.value.number_not_in_range : []
         content {
           key    = number_not_in_range.value.key
           values = number_not_in_range.value.values
         }
       }
       dynamic "string_begins_with" {
-        for_each = advanced_filter.value.string_begins_with != null ? [advanced_filter.value.string_begins_with] : []
+        for_each = advanced_filter.value.string_begins_with != null ? advanced_filter.value.string_begins_with : []
         content {
           key    = string_begins_with.value.key
           values = string_begins_with.value.values
         }
       }
       dynamic "string_contains" {
-        for_each = advanced_filter.value.string_contains != null ? [advanced_filter.value.string_contains] : []
+        for_each = advanced_filter.value.string_contains != null ? advanced_filter.value.string_contains : []
         content {
           key    = string_contains.value.key
           values = string_contains.value.values
         }
       }
       dynamic "string_ends_with" {
-        for_each = advanced_filter.value.string_ends_with != null ? [advanced_filter.value.string_ends_with] : []
+        for_each = advanced_filter.value.string_ends_with != null ? advanced_filter.value.string_ends_with : []
         content {
           key    = string_ends_with.value.key
           values = string_ends_with.value.values
         }
       }
       dynamic "string_in" {
-        for_each = advanced_filter.value.string_in != null ? [advanced_filter.value.string_in] : []
+        for_each = advanced_filter.value.string_in != null ? advanced_filter.value.string_in : []
         content {
           key    = string_in.value.key
           values = string_in.value.values
         }
       }
       dynamic "string_not_begins_with" {
-        for_each = advanced_filter.value.string_not_begins_with != null ? [advanced_filter.value.string_not_begins_with] : []
+        for_each = advanced_filter.value.string_not_begins_with != null ? advanced_filter.value.string_not_begins_with : []
         content {
           key    = string_not_begins_with.value.key
           values = string_not_begins_with.value.values
         }
       }
       dynamic "string_not_contains" {
-        for_each = advanced_filter.value.string_not_contains != null ? [advanced_filter.value.string_not_contains] : []
+        for_each = advanced_filter.value.string_not_contains != null ? advanced_filter.value.string_not_contains : []
         content {
           key    = string_not_contains.value.key
           values = string_not_contains.value.values
         }
       }
       dynamic "string_not_ends_with" {
-        for_each = advanced_filter.value.string_not_ends_with != null ? [advanced_filter.value.string_not_ends_with] : []
+        for_each = advanced_filter.value.string_not_ends_with != null ? advanced_filter.value.string_not_ends_with : []
         content {
           key    = string_not_ends_with.value.key
           values = string_not_ends_with.value.values
         }
       }
       dynamic "string_not_in" {
-        for_each = advanced_filter.value.string_not_in != null ? [advanced_filter.value.string_not_in] : []
+        for_each = advanced_filter.value.string_not_in != null ? advanced_filter.value.string_not_in : []
         content {
           key    = string_not_in.value.key
           values = string_not_in.value.values
@@ -177,7 +177,7 @@ resource "azurerm_eventgrid_system_topic_event_subscription" "eventgrid_system_t
   }
 
   dynamic "delivery_property" {
-    for_each = each.value.delivery_property != null ? [each.value.delivery_property] : []
+    for_each = each.value.delivery_property != null ? each.value.delivery_property : []
     content {
       header_name  = delivery_property.value.header_name
       secret       = delivery_property.value.secret

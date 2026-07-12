@@ -123,80 +123,80 @@ EOT
     service_bus_queue_endpoint_id        = optional(string)
     service_bus_topic_endpoint_id        = optional(string)
     advanced_filter = optional(object({
-      bool_equals = optional(object({
+      bool_equals = optional(list(object({
         key   = string
         value = bool
-      }))
-      is_not_null = optional(object({
+      })))
+      is_not_null = optional(list(object({
         key = string
-      }))
-      is_null_or_undefined = optional(object({
+      })))
+      is_null_or_undefined = optional(list(object({
         key = string
-      }))
-      number_greater_than = optional(object({
+      })))
+      number_greater_than = optional(list(object({
         key   = string
         value = number
-      }))
-      number_greater_than_or_equals = optional(object({
+      })))
+      number_greater_than_or_equals = optional(list(object({
         key   = string
         value = number
-      }))
-      number_in = optional(object({
+      })))
+      number_in = optional(list(object({
         key    = string
         values = list(any)
-      }))
-      number_in_range = optional(object({
+      })))
+      number_in_range = optional(list(object({
         key    = string
         values = list(any)
-      }))
-      number_less_than = optional(object({
+      })))
+      number_less_than = optional(list(object({
         key   = string
         value = number
-      }))
-      number_less_than_or_equals = optional(object({
+      })))
+      number_less_than_or_equals = optional(list(object({
         key   = string
         value = number
-      }))
-      number_not_in = optional(object({
+      })))
+      number_not_in = optional(list(object({
         key    = string
         values = list(any)
-      }))
-      number_not_in_range = optional(object({
+      })))
+      number_not_in_range = optional(list(object({
         key    = string
         values = list(any)
-      }))
-      string_begins_with = optional(object({
+      })))
+      string_begins_with = optional(list(object({
         key    = string
         values = list(string)
-      }))
-      string_contains = optional(object({
+      })))
+      string_contains = optional(list(object({
         key    = string
         values = list(string)
-      }))
-      string_ends_with = optional(object({
+      })))
+      string_ends_with = optional(list(object({
         key    = string
         values = list(string)
-      }))
-      string_in = optional(object({
+      })))
+      string_in = optional(list(object({
         key    = string
         values = list(string)
-      }))
-      string_not_begins_with = optional(object({
+      })))
+      string_not_begins_with = optional(list(object({
         key    = string
         values = list(string)
-      }))
-      string_not_contains = optional(object({
+      })))
+      string_not_contains = optional(list(object({
         key    = string
         values = list(string)
-      }))
-      string_not_ends_with = optional(object({
+      })))
+      string_not_ends_with = optional(list(object({
         key    = string
         values = list(string)
-      }))
-      string_not_in = optional(object({
+      })))
+      string_not_in = optional(list(object({
         key    = string
         values = list(string)
-      }))
+      })))
     }))
     azure_function_endpoint = optional(object({
       function_id                       = string
@@ -211,13 +211,13 @@ EOT
       type                   = string
       user_assigned_identity = optional(string)
     }))
-    delivery_property = optional(object({
+    delivery_property = optional(list(object({
       header_name  = string
       secret       = optional(bool)
       source_field = optional(string)
       type         = string
       value        = optional(string)
-    }))
+    })))
     retry_policy = optional(object({
       event_time_to_live    = number
       max_delivery_attempts = number
@@ -244,18 +244,13 @@ EOT
       url                               = string
     }))
   }))
-  validation {
-    condition = alltrue([
-      for k, v in var.eventgrid_system_topic_event_subscriptions : (
-        length(v.system_topic) > 0
-      )
-    ])
-    error_message = "must not be empty"
-  }
   # --- Unconfirmed validation candidates, derived from azurerm_eventgrid_system_topic_event_subscription's provider source ---
   # Not auto-enabled: either a bespoke provider validator we can't safely translate,
   # or a path that crosses a list-typed block (needs its own for_each wrapping).
   # Review, translate into a real validation{} block above, and delete once confirmed.
+  # path: system_topic
+  #   condition: length(value) > 0
+  #   message:   must not be empty
   # path: resource_group_name
   #   condition: length(value) <= 90
   #   message:   [from resourcegroups.ValidateName: invalid when len(value) > 90]
