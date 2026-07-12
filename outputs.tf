@@ -1,3 +1,7 @@
+output "eventgrid_system_topic_event_subscriptions_id" {
+  description = "Map of id values across all eventgrid_system_topic_event_subscriptions, keyed the same as var.eventgrid_system_topic_event_subscriptions"
+  value       = { for k, v in azurerm_eventgrid_system_topic_event_subscription.eventgrid_system_topic_event_subscriptions : k => v.id }
+}
 output "eventgrid_system_topic_event_subscriptions_advanced_filter" {
   description = "Map of advanced_filter values across all eventgrid_system_topic_event_subscriptions, keyed the same as var.eventgrid_system_topic_event_subscriptions"
   value       = { for k, v in azurerm_eventgrid_system_topic_event_subscription.eventgrid_system_topic_event_subscriptions : k => v.advanced_filter }
