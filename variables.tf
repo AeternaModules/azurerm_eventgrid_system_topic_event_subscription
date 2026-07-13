@@ -244,148 +244,270 @@ EOT
       url                               = string
     }))
   }))
-  # --- Unconfirmed validation candidates, derived from azurerm_eventgrid_system_topic_event_subscription's provider source ---
-  # Not auto-enabled: either a bespoke provider validator we can't safely translate,
-  # or a path that crosses a list-typed block (needs its own for_each wrapping).
-  # Review, translate into a real validation{} block above, and delete once confirmed.
-  # path: name
-  #   source:    validation.All(...) - no translation rule yet, add one
-  # path: system_topic
-  #   condition: length(value) > 0
-  #   message:   must not be empty
-  # path: resource_group_name
-  #   condition: length(value) <= 90
-  #   message:   [from resourcegroups.ValidateName: invalid when len(value) > 90]
-  #   source:    [from resourcegroups.ValidateName: invalid when len(value) > 90]
-  # path: resource_group_name
-  #   condition: !endswith(value, ".")
-  #   message:   [from resourcegroups.ValidateName: must not end with "."]
-  #   source:    [from resourcegroups.ValidateName: must not end with "."]
-  # path: resource_group_name
-  #   condition: length(value) != 0
-  #   message:   [from resourcegroups.ValidateName: invalid when len(value) == 0]
-  #   source:    [from resourcegroups.ValidateName: invalid when len(value) == 0]
-  # path: resource_group_name
-  #   source:    [from resourcegroups.ValidateName] !matched
-  # path: event_delivery_schema
-  #   source:    validation.StringInSlice value list is not a literal []string - likely a generated PossibleValuesFor*() helper; resolve separately
-  # path: expiration_time_utc
-  #   condition: length(value) > 0
-  #   message:   must not be empty
-  # path: azure_function_endpoint.function_id
-  #   source:    [from webapps.ValidateFunctionID] !ok
-  # path: azure_function_endpoint.function_id
-  #   source:    [from webapps.ValidateFunctionID] err != nil
-  # path: eventhub_endpoint_id
-  #   source:    [from eventhubs.ValidateEventhubID] !ok
-  # path: eventhub_endpoint_id
-  #   source:    [from eventhubs.ValidateEventhubID] err != nil
-  # path: hybrid_connection_endpoint_id
-  #   source:    [from hybridconnections.ValidateHybridConnectionID] !ok
-  # path: hybrid_connection_endpoint_id
-  #   source:    [from hybridconnections.ValidateHybridConnectionID] err != nil
-  # path: service_bus_queue_endpoint_id
-  #   source:    [from serviceBusQueues.ValidateQueueID] !ok
-  # path: service_bus_queue_endpoint_id
-  #   source:    [from serviceBusQueues.ValidateQueueID] err != nil
-  # path: service_bus_topic_endpoint_id
-  #   source:    [from serviceBusTopics.ValidateTopicID] !ok
-  # path: service_bus_topic_endpoint_id
-  #   source:    [from serviceBusTopics.ValidateTopicID] err != nil
-  # path: storage_queue_endpoint.storage_account_id
-  #   source:    [from commonids.ValidateStorageAccountID] !ok
-  # path: storage_queue_endpoint.storage_account_id
-  #   source:    [from commonids.ValidateStorageAccountID] err != nil
-  # path: storage_queue_endpoint.queue_name
-  #   condition: length(value) > 0
-  #   message:   must not be empty
-  # path: webhook_endpoint.url
-  #   source:    validation.IsURLWithHTTPS(...) - no translation rule yet, add one
-  # path: webhook_endpoint.max_events_per_batch
-  #   condition: value >= 1 && value <= 5000
-  #   message:   must be between 1 and 5000
-  # path: webhook_endpoint.preferred_batch_size_in_kilobytes
-  #   condition: value >= 1 && value <= 1024
-  #   message:   must be between 1 and 1024
-  # path: included_event_types[*]
-  #   condition: length(value) > 0
-  #   message:   must not be empty
-  # path: advanced_filter.bool_equals.key
-  #   condition: length(value) > 0
-  #   message:   must not be empty
-  # path: advanced_filter.number_greater_than.key
-  #   condition: length(value) > 0
-  #   message:   must not be empty
-  # path: advanced_filter.number_greater_than_or_equals.key
-  #   condition: length(value) > 0
-  #   message:   must not be empty
-  # path: advanced_filter.number_less_than.key
-  #   condition: length(value) > 0
-  #   message:   must not be empty
-  # path: advanced_filter.number_less_than_or_equals.key
-  #   condition: length(value) > 0
-  #   message:   must not be empty
-  # path: advanced_filter.number_in.key
-  #   condition: length(value) > 0
-  #   message:   must not be empty
-  # path: advanced_filter.number_not_in.key
-  #   condition: length(value) > 0
-  #   message:   must not be empty
-  # path: advanced_filter.string_begins_with.key
-  #   condition: length(value) > 0
-  #   message:   must not be empty
-  # path: advanced_filter.string_not_begins_with.key
-  #   condition: length(value) > 0
-  #   message:   must not be empty
-  # path: advanced_filter.string_ends_with.key
-  #   condition: length(value) > 0
-  #   message:   must not be empty
-  # path: advanced_filter.string_not_ends_with.key
-  #   condition: length(value) > 0
-  #   message:   must not be empty
-  # path: advanced_filter.string_contains.key
-  #   condition: length(value) > 0
-  #   message:   must not be empty
-  # path: advanced_filter.string_not_contains.key
-  #   condition: length(value) > 0
-  #   message:   must not be empty
-  # path: advanced_filter.string_in.key
-  #   condition: length(value) > 0
-  #   message:   must not be empty
-  # path: advanced_filter.string_not_in.key
-  #   condition: length(value) > 0
-  #   message:   must not be empty
-  # path: advanced_filter.is_not_null.key
-  #   condition: length(value) > 0
-  #   message:   must not be empty
-  # path: advanced_filter.is_null_or_undefined.key
-  #   condition: length(value) > 0
-  #   message:   must not be empty
-  # path: advanced_filter.number_in_range.key
-  #   condition: length(value) > 0
-  #   message:   must not be empty
-  # path: advanced_filter.number_not_in_range.key
-  #   condition: length(value) > 0
-  #   message:   must not be empty
-  # path: delivery_identity.type
-  #   source:    validation.StringInSlice value list is not a literal []string - likely a generated PossibleValuesFor*() helper; resolve separately
-  # path: dead_letter_identity.type
-  #   source:    validation.StringInSlice value list is not a literal []string - likely a generated PossibleValuesFor*() helper; resolve separately
-  # path: storage_blob_dead_letter_destination.storage_account_id
-  #   source:    [from commonids.ValidateStorageAccountID] !ok
-  # path: storage_blob_dead_letter_destination.storage_account_id
-  #   source:    [from commonids.ValidateStorageAccountID] err != nil
-  # path: storage_blob_dead_letter_destination.storage_blob_container_name
-  #   condition: length(value) > 0
-  #   message:   must not be empty
-  # path: retry_policy.max_delivery_attempts
-  #   condition: value >= 1 && value <= 30
-  #   message:   must be between 1 and 30
-  # path: retry_policy.event_time_to_live
-  #   condition: value >= 1 && value <= 1440
-  #   message:   must be between 1 and 1440
-  # path: delivery_property.type
-  #   condition: contains(["Static", "Dynamic"], value)
-  #   message:   must be one of: Static, Dynamic
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        (length(v.name) > 0) && (can(regex("^[-a-zA-Z0-9]{3,64}$", v.name)))
+      )
+    ])
+    error_message = "all of: must not be empty; EventGrid subscription name must be 3 - 64 characters long, contain only letters, numbers and hyphens."
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        length(v.system_topic) > 0
+      )
+    ])
+    error_message = "must not be empty"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        length(v.resource_group_name) <= 90
+      )
+    ])
+    error_message = "[from resourcegroups.ValidateName: invalid when len(value) > 90]"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        !endswith(v.resource_group_name, ".")
+      )
+    ])
+    error_message = "[from resourcegroups.ValidateName: must not end with \".\"]"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        length(v.resource_group_name) != 0
+      )
+    ])
+    error_message = "[from resourcegroups.ValidateName: invalid when len(value) == 0]"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.expiration_time_utc == null || (length(v.expiration_time_utc) > 0)
+      )
+    ])
+    error_message = "must not be empty"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.storage_queue_endpoint == null || (length(v.storage_queue_endpoint.queue_name) > 0)
+      )
+    ])
+    error_message = "must not be empty"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.webhook_endpoint == null || (v.webhook_endpoint.max_events_per_batch == null || (v.webhook_endpoint.max_events_per_batch >= 1 && v.webhook_endpoint.max_events_per_batch <= 5000))
+      )
+    ])
+    error_message = "must be between 1 and 5000"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.webhook_endpoint == null || (v.webhook_endpoint.preferred_batch_size_in_kilobytes == null || (v.webhook_endpoint.preferred_batch_size_in_kilobytes >= 1 && v.webhook_endpoint.preferred_batch_size_in_kilobytes <= 1024))
+      )
+    ])
+    error_message = "must be between 1 and 1024"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.included_event_types == null || (alltrue([for x in v.included_event_types : length(x) > 0]))
+      )
+    ])
+    error_message = "must not be empty"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.advanced_filter == null || (v.advanced_filter.bool_equals == null || alltrue([for item in v.advanced_filter.bool_equals : (length(item.key) > 0)]))
+      )
+    ])
+    error_message = "must not be empty"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.advanced_filter == null || (v.advanced_filter.number_greater_than == null || alltrue([for item in v.advanced_filter.number_greater_than : (length(item.key) > 0)]))
+      )
+    ])
+    error_message = "must not be empty"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.advanced_filter == null || (v.advanced_filter.number_greater_than_or_equals == null || alltrue([for item in v.advanced_filter.number_greater_than_or_equals : (length(item.key) > 0)]))
+      )
+    ])
+    error_message = "must not be empty"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.advanced_filter == null || (v.advanced_filter.number_less_than == null || alltrue([for item in v.advanced_filter.number_less_than : (length(item.key) > 0)]))
+      )
+    ])
+    error_message = "must not be empty"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.advanced_filter == null || (v.advanced_filter.number_less_than_or_equals == null || alltrue([for item in v.advanced_filter.number_less_than_or_equals : (length(item.key) > 0)]))
+      )
+    ])
+    error_message = "must not be empty"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.advanced_filter == null || (v.advanced_filter.number_in == null || alltrue([for item in v.advanced_filter.number_in : (length(item.key) > 0)]))
+      )
+    ])
+    error_message = "must not be empty"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.advanced_filter == null || (v.advanced_filter.number_not_in == null || alltrue([for item in v.advanced_filter.number_not_in : (length(item.key) > 0)]))
+      )
+    ])
+    error_message = "must not be empty"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.advanced_filter == null || (v.advanced_filter.string_begins_with == null || alltrue([for item in v.advanced_filter.string_begins_with : (length(item.key) > 0)]))
+      )
+    ])
+    error_message = "must not be empty"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.advanced_filter == null || (v.advanced_filter.string_not_begins_with == null || alltrue([for item in v.advanced_filter.string_not_begins_with : (length(item.key) > 0)]))
+      )
+    ])
+    error_message = "must not be empty"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.advanced_filter == null || (v.advanced_filter.string_ends_with == null || alltrue([for item in v.advanced_filter.string_ends_with : (length(item.key) > 0)]))
+      )
+    ])
+    error_message = "must not be empty"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.advanced_filter == null || (v.advanced_filter.string_not_ends_with == null || alltrue([for item in v.advanced_filter.string_not_ends_with : (length(item.key) > 0)]))
+      )
+    ])
+    error_message = "must not be empty"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.advanced_filter == null || (v.advanced_filter.string_contains == null || alltrue([for item in v.advanced_filter.string_contains : (length(item.key) > 0)]))
+      )
+    ])
+    error_message = "must not be empty"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.advanced_filter == null || (v.advanced_filter.string_not_contains == null || alltrue([for item in v.advanced_filter.string_not_contains : (length(item.key) > 0)]))
+      )
+    ])
+    error_message = "must not be empty"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.advanced_filter == null || (v.advanced_filter.string_in == null || alltrue([for item in v.advanced_filter.string_in : (length(item.key) > 0)]))
+      )
+    ])
+    error_message = "must not be empty"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.advanced_filter == null || (v.advanced_filter.string_not_in == null || alltrue([for item in v.advanced_filter.string_not_in : (length(item.key) > 0)]))
+      )
+    ])
+    error_message = "must not be empty"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.advanced_filter == null || (v.advanced_filter.is_not_null == null || alltrue([for item in v.advanced_filter.is_not_null : (length(item.key) > 0)]))
+      )
+    ])
+    error_message = "must not be empty"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.advanced_filter == null || (v.advanced_filter.is_null_or_undefined == null || alltrue([for item in v.advanced_filter.is_null_or_undefined : (length(item.key) > 0)]))
+      )
+    ])
+    error_message = "must not be empty"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.advanced_filter == null || (v.advanced_filter.number_in_range == null || alltrue([for item in v.advanced_filter.number_in_range : (length(item.key) > 0)]))
+      )
+    ])
+    error_message = "must not be empty"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.advanced_filter == null || (v.advanced_filter.number_not_in_range == null || alltrue([for item in v.advanced_filter.number_not_in_range : (length(item.key) > 0)]))
+      )
+    ])
+    error_message = "must not be empty"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.storage_blob_dead_letter_destination == null || (length(v.storage_blob_dead_letter_destination.storage_blob_container_name) > 0)
+      )
+    ])
+    error_message = "must not be empty"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.retry_policy == null || (v.retry_policy.max_delivery_attempts >= 1 && v.retry_policy.max_delivery_attempts <= 30)
+      )
+    ])
+    error_message = "must be between 1 and 30"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.retry_policy == null || (v.retry_policy.event_time_to_live >= 1 && v.retry_policy.event_time_to_live <= 1440)
+      )
+    ])
+    error_message = "must be between 1 and 1440"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.eventgrid_system_topic_event_subscriptions : (
+        v.delivery_property == null || alltrue([for item in v.delivery_property : (contains(["Static", "Dynamic"], item.type))])
+      )
+    ])
+    error_message = "must be one of: Static, Dynamic"
+  }
+  # Note: 19 additional provider-side validators are enforced at apply time but not mirrored as validation{} blocks here (bespoke or non-mechanically-translatable).
 }
 
