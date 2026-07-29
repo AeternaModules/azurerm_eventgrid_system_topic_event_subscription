@@ -8,13 +8,13 @@ Required:
 Optional:
     - advanced_filtering_on_arrays_enabled
     - event_delivery_schema
-    - eventhub_endpoint_id
+    - eventhub_id
     - expiration_time_utc
-    - hybrid_connection_endpoint_id
+    - hybrid_connection_id
     - included_event_types
     - labels
-    - service_bus_queue_endpoint_id
-    - service_bus_topic_endpoint_id
+    - service_bus_queue_id
+    - service_bus_topic_id
     - advanced_filter (block):
         - bool_equals (optional, block):
             - key (required)
@@ -115,13 +115,13 @@ EOT
     system_topic                         = string
     advanced_filtering_on_arrays_enabled = optional(bool)
     event_delivery_schema                = optional(string)
-    eventhub_endpoint_id                 = optional(string)
+    eventhub_id                          = optional(string)
     expiration_time_utc                  = optional(string)
-    hybrid_connection_endpoint_id        = optional(string)
+    hybrid_connection_id                 = optional(string)
     included_event_types                 = optional(list(string))
     labels                               = optional(list(string))
-    service_bus_queue_endpoint_id        = optional(string)
-    service_bus_topic_endpoint_id        = optional(string)
+    service_bus_queue_id                 = optional(string)
+    service_bus_topic_id                 = optional(string)
     advanced_filter = optional(object({
       bool_equals = optional(list(object({
         key   = string

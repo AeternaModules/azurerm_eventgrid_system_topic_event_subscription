@@ -6,13 +6,13 @@ resource "azurerm_eventgrid_system_topic_event_subscription" "eventgrid_system_t
   system_topic                         = each.value.system_topic
   advanced_filtering_on_arrays_enabled = each.value.advanced_filtering_on_arrays_enabled
   event_delivery_schema                = each.value.event_delivery_schema
-  eventhub_endpoint_id                 = each.value.eventhub_endpoint_id
+  eventhub_id                          = each.value.eventhub_id
   expiration_time_utc                  = each.value.expiration_time_utc
-  hybrid_connection_endpoint_id        = each.value.hybrid_connection_endpoint_id
+  hybrid_connection_id                 = each.value.hybrid_connection_id
   included_event_types                 = each.value.included_event_types
   labels                               = each.value.labels
-  service_bus_queue_endpoint_id        = each.value.service_bus_queue_endpoint_id
-  service_bus_topic_endpoint_id        = each.value.service_bus_topic_endpoint_id
+  service_bus_queue_id                 = each.value.service_bus_queue_id
+  service_bus_topic_id                 = each.value.service_bus_topic_id
 
   dynamic "advanced_filter" {
     for_each = each.value.advanced_filter != null ? [each.value.advanced_filter] : []

@@ -31,17 +31,17 @@ output "eventgrid_system_topic_event_subscriptions_event_delivery_schema" {
   description = "Map of event_delivery_schema values across all eventgrid_system_topic_event_subscriptions, keyed the same as var.eventgrid_system_topic_event_subscriptions"
   value       = { for k, v in azurerm_eventgrid_system_topic_event_subscription.eventgrid_system_topic_event_subscriptions : k => v.event_delivery_schema if v.event_delivery_schema != null && length(v.event_delivery_schema) > 0 }
 }
-output "eventgrid_system_topic_event_subscriptions_eventhub_endpoint_id" {
-  description = "Map of eventhub_endpoint_id values across all eventgrid_system_topic_event_subscriptions, keyed the same as var.eventgrid_system_topic_event_subscriptions"
-  value       = { for k, v in azurerm_eventgrid_system_topic_event_subscription.eventgrid_system_topic_event_subscriptions : k => v.eventhub_endpoint_id if v.eventhub_endpoint_id != null && length(v.eventhub_endpoint_id) > 0 }
+output "eventgrid_system_topic_event_subscriptions_eventhub_id" {
+  description = "Map of eventhub_id values across all eventgrid_system_topic_event_subscriptions, keyed the same as var.eventgrid_system_topic_event_subscriptions"
+  value       = { for k, v in azurerm_eventgrid_system_topic_event_subscription.eventgrid_system_topic_event_subscriptions : k => v.eventhub_id if v.eventhub_id != null && length(v.eventhub_id) > 0 }
 }
 output "eventgrid_system_topic_event_subscriptions_expiration_time_utc" {
   description = "Map of expiration_time_utc values across all eventgrid_system_topic_event_subscriptions, keyed the same as var.eventgrid_system_topic_event_subscriptions"
   value       = { for k, v in azurerm_eventgrid_system_topic_event_subscription.eventgrid_system_topic_event_subscriptions : k => v.expiration_time_utc if v.expiration_time_utc != null && length(v.expiration_time_utc) > 0 }
 }
-output "eventgrid_system_topic_event_subscriptions_hybrid_connection_endpoint_id" {
-  description = "Map of hybrid_connection_endpoint_id values across all eventgrid_system_topic_event_subscriptions, keyed the same as var.eventgrid_system_topic_event_subscriptions"
-  value       = { for k, v in azurerm_eventgrid_system_topic_event_subscription.eventgrid_system_topic_event_subscriptions : k => v.hybrid_connection_endpoint_id if v.hybrid_connection_endpoint_id != null && length(v.hybrid_connection_endpoint_id) > 0 }
+output "eventgrid_system_topic_event_subscriptions_hybrid_connection_id" {
+  description = "Map of hybrid_connection_id values across all eventgrid_system_topic_event_subscriptions, keyed the same as var.eventgrid_system_topic_event_subscriptions"
+  value       = { for k, v in azurerm_eventgrid_system_topic_event_subscription.eventgrid_system_topic_event_subscriptions : k => v.hybrid_connection_id if v.hybrid_connection_id != null && length(v.hybrid_connection_id) > 0 }
 }
 output "eventgrid_system_topic_event_subscriptions_included_event_types" {
   description = "Map of included_event_types values across all eventgrid_system_topic_event_subscriptions, keyed the same as var.eventgrid_system_topic_event_subscriptions"
@@ -63,13 +63,13 @@ output "eventgrid_system_topic_event_subscriptions_retry_policy" {
   description = "Map of retry_policy values across all eventgrid_system_topic_event_subscriptions, keyed the same as var.eventgrid_system_topic_event_subscriptions"
   value       = { for k, v in azurerm_eventgrid_system_topic_event_subscription.eventgrid_system_topic_event_subscriptions : k => v.retry_policy if v.retry_policy != null && length(v.retry_policy) > 0 }
 }
-output "eventgrid_system_topic_event_subscriptions_service_bus_queue_endpoint_id" {
-  description = "Map of service_bus_queue_endpoint_id values across all eventgrid_system_topic_event_subscriptions, keyed the same as var.eventgrid_system_topic_event_subscriptions"
-  value       = { for k, v in azurerm_eventgrid_system_topic_event_subscription.eventgrid_system_topic_event_subscriptions : k => v.service_bus_queue_endpoint_id if v.service_bus_queue_endpoint_id != null && length(v.service_bus_queue_endpoint_id) > 0 }
+output "eventgrid_system_topic_event_subscriptions_service_bus_queue_id" {
+  description = "Map of service_bus_queue_id values across all eventgrid_system_topic_event_subscriptions, keyed the same as var.eventgrid_system_topic_event_subscriptions"
+  value       = { for k, v in azurerm_eventgrid_system_topic_event_subscription.eventgrid_system_topic_event_subscriptions : k => v.service_bus_queue_id if v.service_bus_queue_id != null && length(v.service_bus_queue_id) > 0 }
 }
-output "eventgrid_system_topic_event_subscriptions_service_bus_topic_endpoint_id" {
-  description = "Map of service_bus_topic_endpoint_id values across all eventgrid_system_topic_event_subscriptions, keyed the same as var.eventgrid_system_topic_event_subscriptions"
-  value       = { for k, v in azurerm_eventgrid_system_topic_event_subscription.eventgrid_system_topic_event_subscriptions : k => v.service_bus_topic_endpoint_id if v.service_bus_topic_endpoint_id != null && length(v.service_bus_topic_endpoint_id) > 0 }
+output "eventgrid_system_topic_event_subscriptions_service_bus_topic_id" {
+  description = "Map of service_bus_topic_id values across all eventgrid_system_topic_event_subscriptions, keyed the same as var.eventgrid_system_topic_event_subscriptions"
+  value       = { for k, v in azurerm_eventgrid_system_topic_event_subscription.eventgrid_system_topic_event_subscriptions : k => v.service_bus_topic_id if v.service_bus_topic_id != null && length(v.service_bus_topic_id) > 0 }
 }
 output "eventgrid_system_topic_event_subscriptions_storage_blob_dead_letter_destination" {
   description = "Map of storage_blob_dead_letter_destination values across all eventgrid_system_topic_event_subscriptions, keyed the same as var.eventgrid_system_topic_event_subscriptions"
